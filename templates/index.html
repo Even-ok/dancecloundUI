@@ -1,0 +1,643 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>舞动云端舞蹈教学平台</title>
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/base.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/layui.css">
+    <link rel="stylesheet" href="../static/css/fz-video.css">
+    <link rel="stylesheet" href="../static/css/video.css">
+    <link rel="stylesheet" href="../static/font/iconfont.css">
+    <link rel="stylesheet" href="../static/css/cascader.css">
+    <script src="../static/js/layui.js"></script>
+    <script src="../static/js/cascader.js"></script>
+    <!-- <script src="../static/js/jquery-2.2.1.min.js"></script> -->
+    <style>
+        .t_title{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 2.5em;
+            line-height: 80px;
+            color: #fff;
+        }
+        .t_title1{
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 2em;
+            line-height: 40px;
+            color: #fff;
+        }
+        #chart_map{
+            cursor: pointer;    /*是一个手的姿势*/
+        }
+        .t_show{
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-radius: 2px;
+            background: #2C58A6;
+            padding: 2px 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .up_video{
+            height: 100px;
+            margin-right: 80px;
+            margin-top: 80px;
+        }
+        .btn_arrange{
+            
+            display: -webkit-flex;
+            display: flex;
+            margin-right: 165px;
+            margin-left: 165px;
+            margin-top: 130px;
+        }
+
+        .main_score{ 
+            border:1px solid #000;
+            display:flex;
+            text-align:center;
+            -webkit-box-pack: center;
+            height: 276px;
+            width: auto;
+            z-index: 1000;
+        } 
+
+        
+        .leida{  width:290px; height:240px} 
+        .leida img{width:290px; height:240px} 
+
+        .flex-container {display:flex;height:340px;background:transparent;}
+
+        .flex-container1 {display:flex;height:200px;background:transparent;}
+
+        .flex-container2 {display:flex;height:340px;background:transparent;}
+        
+        .speed{
+            flex: 1;/* 等比继承*/
+            margin: 10px;
+            background-color: white;
+            border-radius: 50px;
+            display: flex;
+            overflow: hidden;
+            align-items: flex-start;/*从弹性开始的地方去布局*/
+        }
+        .speed-bar{
+            width: 100%;
+            height: 16.3%;
+            background: linear-gradient(-170deg,#2376ae 0%, #c16ecf 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            cursor: pointer;/*把鼠标变成手的样子*/
+        }
+    </style>
+    
+    <style type="text/css">
+        p{ text-indent:2em;}
+    </style>
+
+</head>
+<body>
+<!-- <script src="../static/js/area.js"></script> -->
+
+<!--header-->
+<div class="header">
+    <div class="bg_header">
+        <div class="header_nav fl t_title">
+            舞动云端舞蹈教学平台
+        </div> 
+    </div>
+</div>
+
+<!--main-->
+<div class="data_content">
+
+    <div class="data_main">
+        <div class="main_left fl">
+            <div class="left_1 t_btn6">
+
+                
+
+                <!--左上边框-->
+                <div class="t_line_box">
+                    <i class="t_l_line"></i> 
+                    <i class="l_t_line"></i> 
+                </div> 
+                <!--右上边框-->
+                <div class="t_line_box">
+                    <i class="t_r_line"></i> 
+                    <i class="r_t_line"></i> 
+                </div> 
+                <!--左下边框-->
+                <div class="t_line_box">
+                    <i class="l_b_line"></i> 
+                    <i class="b_l_line"></i> 
+                </div> 
+                    <!--右下边框-->
+                <div class="t_line_box">
+                    <i class="r_b_line"></i> 
+                    <i class="b_r_line"></i> 
+                </div> 
+                
+                
+                 <div class="flex-container" >  
+                    <!-- 弹性子元素 -->
+                    <form class="layui-form" style="margin:auto; z-index: 1;">
+                        <!-- <div class="layui-card-header">默认 click 触发子菜单-监听选中变更</div> -->
+                        <div><input id="demo1_1"/></div>
+                        <script src="../static/js/my_opt.js"></script>
+                        <div class="layui-upload" style="text-align:center;vertical-align:middle;">
+                            <!-- <input class="layui-btn" style="display: none" id="size1" width:120px; value="111"><br>
+                            <button type="button" class="layui-btn layui-btn-normal" id="selectFile1" >选择文件</button>
+                            <button type="button" class="layui-btn" id="uploadFile1">开始上传</button><br> -->
+                            <!-- <button type="button" class="layui-btn" id="preview1" onclick="prev_1()" style="margin-top: 25px;">预览视频</button> -->
+                            <div id="video1_url" style=" margin-bottom: 60px;" ></div>
+
+                        </div>
+
+                    </form>
+
+                </div> 
+                
+                <div class="main_title">
+                    <img src="../static/img/t_1.png" alt="">
+                  原始视频
+                  <!-- <input class="up_video" type="file" name="originfile" id="originfile" value="Browse..." /> -->
+                </div>
+            
+                <!-- <div class="layui-upload">
+                    <label id="lb1"></label><br>
+                    <input style="display: none" type="file"  name="file" id="getF" onchange="clickF()">
+                    <div class="btn_arrange">
+                        <input type="button" value="选取文件" class="layui-btn layui-bg-green" onclick="getFile()">
+                        <button type="submit" class="layui-btn layui-btn-normal" id="uoload">开始上传</button>
+                    </div>
+                </div> -->
+                <!-- <div id="chart_1" class="chart" style="width:100%;height: 280px;"></div> -->
+            </div>
+            <div class="left_2">
+                <!--左上边框-->
+                <div class="t_line_box">
+                    <i class="t_l_line"></i> 
+                    <i class="l_t_line"></i> 
+                </div> 
+                <!--右上边框-->
+                <div class="t_line_box">
+                    <i class="t_r_line"></i> 
+                    <i class="r_t_line"></i> 
+                </div> 
+                <!--左下边框-->
+                <div class="t_line_box">
+                    <i class="l_b_line"></i> 
+                    <i class="b_l_line"></i> 
+                </div> 
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                    <i class="r_b_line"></i> 
+                    <i class="b_r_line"></i> 
+                </div> 
+                <div class="flex-container2" > 
+                    <!-- 弹性子元素 -->
+                    <form class="layui-form" style="margin:auto; z-index: 1;">
+                        <div class="layui-upload" style="text-align:center;vertical-align:middle;">
+                            <input class="layui-btn" style="display: none" id="size2" value="111"><br>
+                            <button type="button" class="layui-btn layui-btn-normal" id="selectFile2" >选择文件</button>
+                            <button type="button" class="layui-btn" id="uploadFile2">开始上传</button><br>
+                             <button type="button" class="layui-btn" id="preview2" onclick="prev_2()" style="margin-top: 25px;">预览视频</button>
+                             <div id="video2_url" style="display: none;"></div>
+                            <!-- <button type="button"  οnclick="alert('nihao')">读取csv</button><br> -->
+                            
+                        </div>
+
+                    </form>
+                </div>
+                <div class="main_title">
+                    <img src="../static/img/t_2.png" alt="">
+                    选择视频
+                </div>
+
+        </div>                     
+
+        </div>
+        <div class="main_center fl">
+            <div class="center_text">
+                <!--左上边框-->
+                <div class="t_line_box">
+                    <i class="t_l_line"></i> 
+                    <i class="l_t_line"></i> 
+                </div> 
+                <!--右上边框-->
+                <div class="t_line_box">
+                    <i class="t_r_line"></i> 
+                    <i class="r_t_line"></i> 
+                </div> 
+                <!--左下边框-->
+                <div class="t_line_box">
+                    <i class="l_b_line"></i> 
+                    <i class="b_l_line"></i> 
+                </div> 
+                 <!--右下边框-->
+                 <div class="t_line_box">
+                    <i class="r_b_line"></i> 
+                    <i class="b_r_line"></i> 
+                </div> 
+                <div class="main_title">
+                    视频预览
+                </div>
+                    <!-- <source src="C:/Users/lyw10/Desktop/learning/大三上/舞云端Code/score_video_ui2/score_video_ui2/origin_videos/1.mp4" type="video/mp4">
+                    <object data="C:/Users/lyw10/Desktop/learning/大三上/舞云端Code/score_video_ui2/score_video_ui2/origin_videos/1.mp4" style="width:100%;height:610px;">
+                      <embed width="500" height="500" src="C:/Users/lyw10/Desktop/learning/大三上/舞云端Code/score_video_ui2/score_video_ui2/origin_videos/1.mp4">
+                    </object>
+                  </video> -->
+                <!-- <div id="chart_map" style="width:100%;height:610px;"></div> -->
+               
+                 <!-- <div id="dance_video" style="width:100%;height:610px;">
+                    <video  width="100%" height="100%" controls class="flex" autoplay>
+                        <source src="C:/Users/lyw10/Desktop/learning/大三上/舞云端Code/score_video_ui2/score_video_ui2/origin_videos/1.mp4" type="video/mp4">
+                        <object data="C:/Users/lyw10/Desktop/learning/大三上/舞云端Code/score_video_ui2/score_video_ui2/origin_videos/1.mp4" >
+                          <embed  height="100%" src="C:/Users/lyw10/Desktop/learning/大三上/舞云端Code/score_video_ui2/score_video_ui2/origin_videos/1.mp4">
+                        </object>
+                      </video>
+                      <div class="speed">
+                        <div class="speed-bar">1x</div>
+                    </div>
+                
+                </div> -->
+                <div id="testBox">
+
+                </div>
+            <!-- <script>
+                 var FZ_VIDEO = new createVideo(
+                     "testBox",	//容器的id
+                     {
+                        //  url 		: "../static/video/1.mp4", 	//视频地址
+                        //  autoplay	: false				//是否自动播放
+                        url 		: "/static/video/1.mp4", 	//视频地址
+                        autoplay	: false				//是否自动播放
+                     }
+                 );
+            </script> -->
+            </div>
+        </div>
+        <div class="main_right fr">
+            <div class="right_1">
+                <!--左上边框-->
+                <div class="t_line_box">
+                    <i class="t_l_line"></i> 
+                    <i class="l_t_line"></i> 
+                </div> 
+                <!--右上边框-->
+                <div class="t_line_box">
+                    <i class="t_r_line"></i> 
+                    <i class="r_t_line"></i> 
+                </div> 
+                <!--左下边框-->
+                <div class="t_line_box">
+                    <i class="l_b_line"></i> 
+                    <i class="b_l_line"></i> 
+                </div> 
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                    <i class="r_b_line"></i> 
+                    <i class="b_r_line"></i> 
+                </div> 
+                <div class="main_title">
+                    <img src="../static/img/t_4.png" alt="">
+                    平台介绍
+                </div>
+                <!-- <div id="chart_3" class="echart t_btn7" style="width:100%;height: 280px;"></div> -->
+                <!-- <img src="../static/img/dance_logo.png"  alt=""    height="100%" style="margin:auto;" /> -->
+                <div class="flex-container2" > 
+                    <!-- 弹性子元素 -->
+                    <form class="layui-form" style="margin:auto; z-index: 1; text-align: center;">
+                        <img src="../static/img/dance_logo.png"  alt=""    height="100%" style=" display:inline-block;vertical-align: middle;" />
+                        <span style="display: inline-block;width: 0;height: 100%;vertical-align: middle;"></span>
+                            <!-- <button type="button"  οnclick="alert('nihao')">读取csv</button><br> -->
+                            <div class="layui-text" style="margin: 14px;margin-top: 5px;">
+                                    <font color="#FFFFFF" size="4">
+                                    <p > 团队名称：舞动云端团队</p>
+                                    </font>
+                            </div>
+
+                    </form>
+                </div>
+                <!-- <div class="layui-text" style="margin: 14px;margin-top: 16px;">
+                    <div class="flex-container1"  > 
+                        <font color="#FFFFFF" size="4">
+                        <img src="../static/img/dance_logo.png"  alt=""    height="100%" style="margin:auto;" />
+                        <p style="margin-left: 60px;"> 团队名称：舞动云端团队</p>
+                        </font>
+                    </div>
+                </div> -->
+            </div>
+            <div class="right_2">
+                <!--左上边框-->
+                <div class="t_line_box">
+                    <i class="t_l_line"></i> 
+                    <i class="l_t_line"></i> 
+                </div> 
+                <!--右上边框-->
+                <div class="t_line_box">
+                    <i class="t_r_line"></i> 
+                    <i class="r_t_line"></i> 
+                </div> 
+                <!--左下边框-->
+                <div class="t_line_box">
+                    <i class="l_b_line"></i> 
+                    <i class="b_l_line"></i> 
+                </div> 
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                    <i class="r_b_line"></i> 
+                    <i class="b_r_line"></i> 
+                </div> 
+                <div class="main_title">
+                    <img src="../static/img/t_5.png" alt="">
+                    雷达图
+                </div>
+                
+                <div class="leida" style="margin:auto; z-index: 1;margin-top: 30px;"> 
+                    <img id="leida_photo" src="" style="visibility:hidden;"/>   <!--../static/img/score1.png-->
+                </div>
+                <!-- <img src="img/dance_logo.png"  alt=""    height="100%" style="margin:auto;" /> -->
+                <!-- <div id="chart_4" class="echart fl t_btn4" style="width:100%;height: 280px;cursor: pointer;"></div> -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="data_bottom">
+        <div class="bottom_1 fl t_btn5" >
+            <!--左上边框-->
+            <div class="t_line_box">
+                <i class="t_l_line"></i> 
+                <i class="l_t_line"></i> 
+            </div> 
+            <!--右上边框-->
+            <div class="t_line_box">
+                <i class="t_r_line"></i> 
+                <i class="r_t_line"></i> 
+            </div> 
+            <!--左下边框-->
+            <div class="t_line_box">
+                <i class="l_b_line"></i> 
+                <i class="b_l_line"></i> 
+            </div> 
+                <!--右下边框-->
+                <div class="t_line_box">
+                <i class="r_b_line"></i> 
+                <i class="b_r_line"></i> 
+            </div>
+            <div class="flex-container" > 
+                <!-- 弹性子元素 -->
+                <form class="layui-form" style="margin:auto; z-index: 1;">
+                    <div class="layui-upload" style="text-align:center;vertical-align:middle;">
+                        <input class="layui-btn" style="display: none" id="size2" value="111">
+                        <input type="button" class="layui-btn" value="开始评分" onclick="start_score()"  />
+                        <!-- <div id="wrapper">
+                        <div id="fade">Fading JavaScript Example</div>
+                        <div id="buttons">
+                            <div class="button" onclick="fadeEffect.init('fade', 1)">Fade In</div>
+                            <div class="button floatright" onclick="fadeEffect.init('fade', 0)">Fade Out</div>
+                        </div> -->
+                        <div id="motion_score_1" style="display:none; font-size:18px; text-align:center;vertical-align:middle;margin-top: 20px;" style="color:transparent">
+                            <input type="text" style="color:#fff; background-color: transparent; font-size:20px;" width:120px; height:30px;  id="motion_score" value = "     动作评分为:" >
+                        </div>
+                        <p  style="display:none">空行</p>
+                        <div  id="rhythm_score_2" style="display:none; font-size:18px; text-align:center;vertical-align:middle;" style="color:transparent" >
+                            <input type="text"  style="color:#fff; background-color: transparent; font-size:20px;" width:120px; height:30px; id="rhythm_score" value = "     节奏评分为:" />
+                        </div>
+                        <!-- <img class ="layui-upload-img" src="" id="demo1"> -->
+                    </div>
+
+                </form>
+            </div>
+            <div class="main_title">
+                <img src="../static/img/t_6.png" alt="">
+                总体评分
+            </div>
+            <!-- <div id="chart_5" class="echart fl" style="width:100%;height: 250px;margin-top: 15px;"></div> -->
+            <!-- <div class="all_score">-->
+
+
+        </div>
+        <div class="bottom_center fl">
+            <div class="bottom_2 fl">
+                <!--左上边框-->
+                <div class="t_line_box">
+                    <i class="t_l_line"></i> 
+                    <i class="l_t_line"></i> 
+                </div> 
+                <!--右上边框-->
+                <div class="t_line_box">
+                    <i class="t_r_line"></i> 
+                    <i class="r_t_line"></i> 
+                </div> 
+                <!--左下边框-->
+                <div class="t_line_box">
+                    <i class="l_b_line"></i> 
+                    <i class="b_l_line"></i> 
+                </div> 
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                    <i class="r_b_line"></i> 
+                    <i class="b_r_line"></i> 
+                </div>
+                <div class="main_title">
+                    <img src="../static/img/t_7.png" alt="">
+                    具体评分
+                </div>
+                <div class="main_table">
+                    <table id = "ut">
+                        <thead>
+                        <tr>
+                            <th>身体部位</th>
+                            <th>动作得分</th>
+                            <th>节奏得分</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>右手</td>
+                            <td id="td_body_1" ></td>
+                            <td id="td_rhythm_1" ></td>
+                        </tr>
+                        <tr>
+                            <td>左手</td>
+                            <td id="td_body_2" ></td>
+                            <td id="td_rhythm_2" ></td>
+                        </tr>
+                        <tr>
+                            <td>右肩</td>
+                            <td id="td_body_3"></td>
+                            <td id="td_rhythm_3" ></td>
+                        </tr>
+                        <tr>
+                            <td>左肩</td>
+                            <td id="td_body_4"></td>
+                            <td id="td_rhythm_4" ></td>
+                        </tr>
+                        <tr>
+                            <td>头与躯干</td>
+                            <td id="td_body_5"></td>
+                            <td id="td_rhythm_5" ></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="bottom_3 fl">
+                <!--左上边框-->
+                <div class="t_line_box">
+                    <i class="t_l_line"></i> 
+                    <i class="l_t_line"></i> 
+                </div> 
+                <!--右上边框-->
+                <div class="t_line_box">
+                    <i class="t_r_line"></i> 
+                    <i class="r_t_line"></i> 
+                </div> 
+                <!--左下边框-->
+                <div class="t_line_box">
+                    <i class="l_b_line"></i> 
+                    <i class="b_l_line"></i> 
+                </div> 
+                    <!--右下边框-->
+                    <div class="t_line_box">
+                    <i class="r_b_line"></i> 
+                    <i class="b_r_line"></i> 
+                </div>
+                <div class="main_title">
+                    <img src="../static/img/t_7.png" alt="">
+                   具体评分
+                </div>
+                 <div class="main_table">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>身体部位</th>
+                            <th>动作得分</th>
+                            <th>节奏得分</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>右肩与躯干</td>
+                            <td id="td_body_6"></td>
+                            <td id="td_rhythm_6" ></td>
+                        </tr>
+                        <tr>
+                            <td>左肩与躯干</td>
+                            <td id="td_body_7"></td>
+                            <td id="td_rhythm_7" ></td>
+                        </tr>
+                        <tr>
+                            <td>躯干与右髋</td>
+                            <td id="td_body_8"></td>
+                            <td id="td_rhythm_8" ></td>
+                        </tr>
+                        <tr>
+                            <td>躯干与左髋</td>
+                            <td id="td_body_9"></td>
+                            <td id="td_rhythm_9" ></td>
+                        </tr>
+                        <tr>
+                            <td>右腿与髋</td>
+                            <td id="td_body_10"></td>
+                            <td id="td_rhythm_10" ></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="bottom_4 fr">
+            <!--左上边框-->
+            <div class="t_line_box">
+                <i class="t_l_line"></i> 
+                <i class="l_t_line"></i> 
+            </div> 
+            <!--右上边框-->
+            <div class="t_line_box">
+                <i class="t_r_line"></i> 
+                <i class="r_t_line"></i> 
+            </div> 
+            <!--左下边框-->
+            <div class="t_line_box">
+                <i class="l_b_line"></i> 
+                <i class="b_l_line"></i> 
+            </div> 
+                <!--右下边框-->
+                <div class="t_line_box">
+                <i class="r_b_line"></i> 
+                <i class="b_r_line"></i> 
+            </div>
+            <div class="main_title">
+                <img src="../static/img/t_7.png" alt="">
+               具体评分
+            </div>
+            <div class="main_table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>身体部位</th>
+                        <th>动作得分</th>
+                        <th>节奏得分</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>左腿与髋</td>
+                        <td id="td_body_11"></td>
+                        <td id="td_rhythm_11" ></td>
+                    </tr>
+                    <tr>
+                        <td>右脚</td>
+                        <td id="td_body_12"></td>
+                        <td id="td_rhythm_12" ></td>
+                    </tr>
+                    <tr>
+                        <td>左脚</td>
+                        <td id="td_body_13"></td>
+                        <td id="td_rhythm_13" ></td>
+                    </tr>
+                    <tr>
+                        <td>右脚踝</td>
+                        <td id="td_body_14"></td>
+                        <td id="td_rhythm_14" ></td>
+                    </tr>
+                    <tr>
+                        <td>左脚踝</td>
+                        <td id="td_body_15"></td>
+                        <td id="td_rhythm_15" ></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../static/js/upload.js"></script>
+<script src="../static/js/jquery-2.2.1.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/common.js"></script>
+<script src="../static/js/echarts.min.js"></script>
+<script src="../static/js/dataTool.js"></script>
+<script src="../static/js/index.js"></script>
+<script src="../static/js/china.js"></script>
+<script src="../static/js/hunan.js"></script>
+<script src="../static/js/getScore.js"></script>
+<script src="../static/js/fz-video.js"></script>
+
+
+</body>
+
+</html>
